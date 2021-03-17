@@ -1,6 +1,8 @@
 name: Sonarcloud
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [develop]
   
 jobs:
   build:
