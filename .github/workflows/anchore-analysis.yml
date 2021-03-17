@@ -24,9 +24,7 @@ jobs:
       with:
         image: "webgoat/goatandwolf"
         acs-report-enable: true
-        
-    - name: Display SARIF report data
-      run: cat results.sarif
+        fail-build: false
         
     - name: Upload Anchore Scan Report
       uses: github/codeql-action/upload-sarif@v1
