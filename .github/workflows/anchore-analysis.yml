@@ -19,15 +19,15 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2
       
-    - name: Build the Docker image
-      run: |
-        cd docker
-        docker build . --file Dockerfile --tag localbuild/webgoat:latest
+#     - name: Build the Docker image
+#       run: |
+#         cd docker
+#         docker build . --file Dockerfile --tag localbuild/webgoat:latest
       
     - name: Run the Anchore scan action itself with GitHub Advanced Security code scanning integration enabled
       uses: anchore/scan-action@main
       with:
-        image: "localbuild/webgoat:latest"
+        image: "webgoat/goatandwolf"
         debug: true
         acs-report-enable: true
         
