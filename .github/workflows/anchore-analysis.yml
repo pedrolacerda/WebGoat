@@ -19,17 +19,14 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2
       
-    - name: Build the Docker image
-      run: |
-        cd docker
-        docker build . --file Dockerfile --tag localbuild/webgoat:latest
-      
     - name: Run the Anchore scan action itself with GitHub Advanced Security code scanning integration enabled
       uses: anchore/scan-action@main
       with:
-        image: "localbuild/webgoat:latest"
-        debug: true
+        image: "webgoat/goatandwolf"
         acs-report-enable: true
+        
+    - name: Display SARIF report data
+      run: cat results.sarif
         
     - name: Upload Anchore Scan Report
       uses: github/codeql-action/upload-sarif@v1
