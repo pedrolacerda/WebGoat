@@ -15,6 +15,5 @@ public class Secrets {
   private final String apikey = "PMAK-5fb48e6834c14400477b8770-3a8fdfb32f060378f705e47086490584d6";
 
   private final String apiKey = "12345678901234567890123456789012-12345678-12345678";
-
   
 }
