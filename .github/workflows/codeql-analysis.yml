@@ -3,6 +3,9 @@ name: "CodeQL"
 on:
   pull_request:
     branches: [develop]
+  push:
+    branches: [develop, new-feature-*]
+    
   workflow_dispatch:
 
 jobs:
