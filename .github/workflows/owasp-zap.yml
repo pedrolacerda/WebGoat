@@ -6,7 +6,8 @@ on:
       target:
         description: 'Target URL to be analyzed'
         required: true
-        default: 'https://www.zaproxy.org/'
+        default: 'https://demo-pedro-prod.azurewebsites.net/'
+#         default: 'https://www.zaproxy.org/'
 
 jobs:
   zap-scan:
