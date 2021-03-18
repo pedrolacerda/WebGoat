@@ -2,6 +2,11 @@ name: OWASP ZAP Full Scan
 
 on:
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'Target URL to be analyzed'
+        required: true
+        default: 'https://www.zaproxy.org/'
 
 jobs:
   zap-scan:
@@ -16,5 +21,5 @@ jobs:
         uses: zaproxy/action-full-scan@v0.2.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          target: 'https://www.zaproxy.org/'
+          target: ${{ github.event.inputs.target }}
           cmd_options: '-z "-config view.locale=pt_BR"'
