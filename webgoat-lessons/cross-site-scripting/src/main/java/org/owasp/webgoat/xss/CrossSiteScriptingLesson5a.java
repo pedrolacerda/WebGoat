@@ -28,7 +28,10 @@ import org.owasp.webgoat.assignments.AssignmentHints;
 import org.owasp.webgoat.assignments.AttackResult;
 import org.owasp.webgoat.session.UserSessionData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -59,7 +62,7 @@ public class CrossSiteScriptingLesson5a extends AssignmentEndpoint {
 
         userSessionData.setValue("xss-reflected1-complete", "false");
         StringBuffer cart = new StringBuffer();
-        cart.append("Thank you for shopping at WebGoat. <br />You're support is appreciated<hr />");
+        cart.append("Thank you for shopping at WebGoat. <br />Your support is appreciated<hr />");
         cart.append("<p>We have charged credit card:" + field1 + "<br />");
         cart.append("                             ------------------- <br />");
         cart.append("                               $" + totalSale);

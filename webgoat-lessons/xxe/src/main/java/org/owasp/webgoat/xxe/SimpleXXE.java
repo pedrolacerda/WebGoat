@@ -37,12 +37,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -54,7 +52,7 @@ import javax.servlet.http.HttpServletRequest;
 public class SimpleXXE extends AssignmentEndpoint {
 
     private static final String[] DEFAULT_LINUX_DIRECTORIES = {"usr", "etc", "var"};
-    private static final String[] DEFAULT_WINDOWS_DIRECTORIES = {"Windows", "Program Files (x86)", "Program Files"};
+    private static final String[] DEFAULT_WINDOWS_DIRECTORIES = {"Windows", "Program Files (x86)", "Program Files", "pagefile.sys"};
 
     @Value("${webgoat.server.directory}")
     private String webGoatHomeDirectory;
@@ -76,6 +74,7 @@ public class SimpleXXE extends AssignmentEndpoint {
         		secure = true;
         	}
             Comment comment = comments.parseXml(commentStr, secure);
+            //System.err.println("Comment " + comment);
             comments.addComment(comment, false);
             if (checkSolution(comment)) {
                 return success(this).build();
@@ -88,9 +87,9 @@ public class SimpleXXE extends AssignmentEndpoint {
 
     private boolean checkSolution(Comment comment) {
         String[] directoriesToCheck = OS.isFamilyMac() || OS.isFamilyUnix() ? DEFAULT_LINUX_DIRECTORIES : DEFAULT_WINDOWS_DIRECTORIES;
-        boolean success = true;
+        boolean success = false;
         for (String directory : directoriesToCheck) {
-            success &= org.apache.commons.lang3.StringUtils.contains(comment.getText(), directory);
+            success |= org.apache.commons.lang3.StringUtils.contains(comment.getText(), directory);
         }
         return success;
     }
