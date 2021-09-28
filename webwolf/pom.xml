@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.owasp.webgoat</groupId>
         <artifactId>webgoat-parent</artifactId>
-        <version>${revision}</version>
+        <version>8.2.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>org.bitbucket.b_c</groupId>
             <artifactId>jose4j</artifactId>
-            <version>0.7.2</version>
+            <version>0.7.6</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,6 +68,10 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
@@ -89,7 +93,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
-            <version>3.2.1</version>
+            <version>3.5.1</version>
         </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
@@ -109,20 +113,12 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -141,16 +137,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <forkMode>never</forkMode>
-                    <argLine>
-                        --illegal-access=permit
-                    </argLine>
-                </configuration>
             </plugin>
         </plugins>
     </build>
